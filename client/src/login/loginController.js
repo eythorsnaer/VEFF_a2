@@ -2,10 +2,11 @@
 
 angular.module("ChatApp").controller("LoginController", ["$scope", "$location", 
 	function LoginController($scope, $location) {
+
 		$scope.user = "";
 		$scope.pass = "";
 		$scope.errorMessage = "";
-
+/*
 		$scope.onLogin = function onLogin() {
 			 
 			socket.emit("adduser", $scope.user, function() {			
@@ -15,7 +16,7 @@ angular.module("ChatApp").controller("LoginController", ["$scope", "$location",
 
 		};
 
-		/*
+		
 		$scope.onLogin = function onLogin() {
 			ChatRescource.login($scope.user, $scope.pass, funciton(success)) {
 				if(!success) {

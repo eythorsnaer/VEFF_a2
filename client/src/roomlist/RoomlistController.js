@@ -7,6 +7,6 @@ angular.module("ChatApp").controller("RoomlistController", ["$scope", "$location
 		}, {
 			name: "room 2",
 			id: 1
-		}]
+		}];
 	}
 ]);
