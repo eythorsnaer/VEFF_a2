@@ -1,0 +1,1 @@
+function seeded(e){function n(){return e+(now()-r)}var r=now();return n}var now=require("./index");module.exports=seeded;

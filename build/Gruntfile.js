@@ -1,0 +1,1 @@
+module.exports=function(n){n.loadNpmTasks("grunt-contrib-jshint");var i={jshint:{src:["**/*.js"],gruntfile:["Gruntfile.js"],options:{}}};n.initConfig(i)};
