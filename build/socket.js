@@ -1,1 +1,0 @@
-angular.module("chatApp").factory("socket",["$rootScope",function(n){var t=io.connect("http://localhost:8080");return{on:function(o,c){t.on(o,function(){var o=arguments;n.$apply(function(){c.apply(t,o)})})},emit:function(o,c,a){t.emit(o,c,function(){var o=arguments;n.$apply(function(){a&&a.apply(t,o)})})},getSocket:function(){return t}}}]);

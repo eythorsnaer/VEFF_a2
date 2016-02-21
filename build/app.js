@@ -1,1 +1,0 @@
-angular.module("ChatWebApp",[]),angular.module("ChatWebApp").controller("ChatController",function(l,a){l.message="Hello world!"}),angular.module("ChatWebApp").constant("BACKEND_URL","http://localhost:8080");
