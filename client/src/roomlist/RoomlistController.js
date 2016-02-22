@@ -3,7 +3,7 @@
 angular.module("ChatApp").controller("RoomlistController", ["$scope", "$location", "ChatResource", 
 	function RoomlistController($scope, $location, ChatResource) {
 
-		
+		$scope.user = "logged in user";
 
 		$scope.changeUsername = function changeUseername() {
 			$scope.user = $scope.changedUsername;

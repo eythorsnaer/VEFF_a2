@@ -3,5 +3,10 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 		var id = $routeParams.id;
 
 		var queryString = $location.search();
+		var status = queryString["status"];
+
+		if (status === "available") {
+			
+		}
 	}
 ]);
