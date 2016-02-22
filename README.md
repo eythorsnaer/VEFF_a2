@@ -1,3 +1,11 @@
+Run gulp in client folder
+
+Run chatserver in chatserver folder
+
+Run SimpleHTTPServer in client folder
+
+Test in Google Chrome
+
 #Features (65%):
 "Login" with nickname
 
