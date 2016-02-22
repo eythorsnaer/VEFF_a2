@@ -14,5 +14,5 @@ angular.module("ChatApp", ['ngRoute', 'ng']).config(["$routeProvider", function(
 	}).otherwise({ redirectTo: "/login" });
 }]).value("theUser", {
 	username: "",
-	loggedIn: false
+	isLoggedIn: false
 });

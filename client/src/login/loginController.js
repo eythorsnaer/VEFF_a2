@@ -17,6 +17,7 @@ angular.module("ChatApp").controller("LoginController", ["$scope", "$location", 
 				else {
 					$scope.$apply(function() {
 						theUser.username = $scope.user;
+						theUser.isLoggedIn = true;
 						$location.path("/rooms");
 						$location.replace();
 					});
