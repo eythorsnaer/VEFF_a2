@@ -5,74 +5,118 @@ var socket = io.connect('http://localhost:8080');
 angular.module("ChatApp").factory("ChatResource");
 function ChatResource() {
 	return {
-		login: function login(nick) {
+		login: function login(nick, callback) {
 			socket.emit("adduser", nick, function(available){
-				if (!available){
-					// TODO: Error handling
+				if (available){
+					callback(true);
+				}
+				else
+				{
+					callback(false);
 				}
 			});
 		},
 
-		getRoomList: function getRoomList() {
+		getRoomList: function getRoomList(callback) {
 			socket.emit("rooms");
+			callback();
 		},
 
-		createRoom: function createRoom() {
+		createRoom: function createRoom(callback) {
 			var roomInfo = {room: undefined};
 
-			socket.emit("joinroom", roomInfo, function(available, reason){
-				// TODO: Error handling, catch events
+			socket.emit("joinroom", roomInfo, function(success, reason){
+				if (success)
+				{
+					callback(true, reason);
+				}
+				else
+				{
+					callback(false, reason);
+				}
 			});
 		},
 
-		joinRoom: function joinRoom(roomID) {
+		joinRoom: function joinRoom(roomID, callback) {
 			var roomInfo ={room: roomID};
 
-			socket.emit("joinroom", roomInfo, function(available, reason){
-				// TODO: Error handling, catch events
+			socket.emit("joinroom", roomInfo, function(success, reason){
+				if (success)
+				{
+					callback(true, reason);
+				}
+				else
+				{
+					callback(false, reason);
+				}
 			});
 		},
 
-		leaveRoom: function leaveRoom(roomID) {
+		leaveRoom: function leaveRoom(roomID, callback) {
 			socket.emit("partroom", roomID);
+			callback();
 		},
  
-		sendMessage: function sendMessage(message, roomID) {
+		sendMessage: function sendMessage(message, roomID, callback) {
 			var messageInfo = {roomName: roomID, msg: message};
 
 			socket.emit("sendmsg", messageInfo);
+			callback();
 		},
 
-		sendPrivateMessage: function sendPrivateMessage(message, user) {
+		sendPrivateMessage: function sendPrivateMessage(message, user, callback) {
 			var messageInfo = {nick: user, msg: message};
 
-			socket.emit("sendmsg", messageInfo, function(available){
-				// TODO: Error handling, catch event
+			socket.emit("sendmsg", messageInfo, function(success){
+				if (success)
+				{
+					callback(true);
+				}
+				else
+				{
+					callback(false);
+				}
 			});
 		},
 
-		getUserList: function getUserList() {
+		getUserList: function getUserList(callback) {
 			socket.emit("users");
+			callback();
 		},
 
-		kickUser: function kickUser(nick, roomID) {
+		kickUser: function kickUser(nick, roomID, callback) {
 			var userInfo = {user: nick, room: roomID};
 
-			socket.emit("kick", userInfo, function(available){
-				// TODO: Catch events, error handling
+			socket.emit("kick", userInfo, function(success){
+				if (success)
+				{
+					callback(true);
+				}
+				else
+				{
+					callback(false);
+				}
 			});
 		},
 
-		banUser: function banUser(nick, roomID) {
+		banUser: function banUser(nick, roomID, callback) {
 			var userInfo = {user: nick, room: roomID};
 
-			socket.emit("ban", userInfo, function(available){
-				// TODO: Catch events, error handling
+			socket.emit("ban", userInfo, function(success){
+				if (success)
+				{
+					callback(true);
+				}
+				else
+				{
+					callback(false);
+				}
 			});
 		},
 
-		exit: function exit() {
+		logout: function logout(callback) {
 			socket.emit("disconnect");
+			callback();
 		}
 	};
 }
