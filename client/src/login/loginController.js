@@ -11,7 +11,7 @@ angular.module("ChatApp").controller("LoginController", ["$scope", "$location", 
 			ChatResource.login($scope.user, function(success) {
 				if(!success) {
 					$scope.$apply(function() {
-						$scope.errorMessage = "Innskráning mistókst";
+						$scope.errorMessage = "ERROR: failed to login!!!!! :p";
 					});
 				} 
 				else {

@@ -18,14 +18,14 @@ function ChatResource() {
 			});
 		},
 
-		getRoomList: function getRoomList(callback) {
+		getRoomlist: function getRoomList() {
 			socket.emit("rooms");
-			callback();
 		},
-
+/*
 		createRoom: function createRoom(callback) {
+			//room should be undefined here
 			var roomInfo = {room: undefined};
-
+			
 			socket.emit("joinroom", roomInfo, function(success, reason){
 				if (success)
 				{
@@ -36,8 +36,10 @@ function ChatResource() {
 					callback(false, reason);
 				}
 			});
+			
+			
 		},
-
+*/
 		joinRoom: function joinRoom(roomID, callback) {
 			var roomInfo ={room: roomID};
 

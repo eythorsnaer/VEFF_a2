@@ -8,8 +8,8 @@ angular.module("ChatApp", ['ngRoute', 'ng']).config(["$routeProvider", function(
 	.when("/rooms", {
 		templateUrl: "src/roomlist/roomlist.html",
 		controller: "RoomlistController"
-	}).when("/rooms/:id", {
-		templateUrl: "src/roomlist/room.html",
+	}).when("/room/:id", {
+		templateUrl: "src/room/room.html",
 		controller: "RoomController"
 	}).otherwise({ redirectTo: "/login" });
 }]).value("theUser", {
