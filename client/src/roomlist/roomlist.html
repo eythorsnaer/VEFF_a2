@@ -6,9 +6,6 @@
 			<input type="text" ng-model="changedUsername"  placeholder="New Username!"/>
 			<button ng-click="onChangeUsername()">Change Username!</button>
 		</div>
-		<div class="col-xs-12">
-			<button ng-click="onLogout()">Logout</button>
-		</div>
 </div>
 
 <!-- list of available rooms -->
@@ -23,26 +20,26 @@
 	</li>
 </ul>
 
-
 <!--create room -->
 <div>
-
 	<form novalidate>
 		<div class="form-group">
-			<label for="createRoomTextbox">Create Room:</label>
 			<input type="text" ng-model="createRoomTextbox" placeholder="Room Name..." required>
-		</div>
-		<div class="form-group">
 			<button class="btn btn-primary" ng-click="onCreateRoom()">Create Room!</button>
 		</div>
 
 	</form>
-		
-	
-	<div class="row">
-		<div class="col-xs-12">
-			{{errorMessage}}
-		</div>
+</div>
+
+<!--logout-->
+<div class="col-xs-12">
+	<button ng-click="onLogout()">Logout</button>
+</div>	
+
+<!--error messages for this view-->
+<div class="row">
+	<div class="col-xs-12">
+		{{errorMessage}}
 	</div>
 </div>
 

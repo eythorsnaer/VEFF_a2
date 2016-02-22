@@ -60,11 +60,10 @@ function ChatResource() {
 			callback();
 		},
  
-		sendMessage: function sendMessage(message, roomID, callback) {
+		sendMessage: function sendMessage(message, roomID) {
 			var messageInfo = {roomName: roomID, msg: message};
 
 			socket.emit("sendmsg", messageInfo);
-			callback();
 		},
 
 		sendPrivateMessage: function sendPrivateMessage(message, user, callback) {

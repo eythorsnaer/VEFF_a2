@@ -17,7 +17,6 @@ angular.module("ChatApp").controller("RoomlistController", ["$scope", "$location
 		socket.on("roomlist", function(roomlistFromServer) {
 			$scope.$apply(function() {
 				$scope.roomlist = roomlistFromServer;
-				console.log(roomlistFromServer);
 			});
 		});
 

@@ -1,1 +1,28 @@
-<a ng-href="#/rooms">leave!</a>
+<div class="row">
+	<div class="col-xs-12">
+		<a ng-click="onLeave()" ng-href="#/rooms" >leave!</a>
+	</div>
+</div>
+
+
+<form role="form">
+	<textarea ng-model="newMessage" class="form-control">Type a message here...</textarea>
+	<button type="submit" class="btn btn-default" ng-click="onSendMessage()">Send!</button>
+</form>
+
+
+<h2>Messages:</h2>
+
+<div class="media">
+	<div class="media-body" ng-repeat="message in messageList">							
+			<h3>{{message.nick}}</h3>
+			<h5>{{message.timestamp | date:"dd/MM/yyyy HH:mm"}}</h5>
+			<p>{{message.message}}<p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		{{errorMessage}}
+	</div>
+</div>
