@@ -26,6 +26,15 @@ angular.module("ChatApp").controller("RoomlistController", ["$scope", "$location
 			name: "umræður um homma",
 			id: 2
 		}];
+
+		$scope.onLogout = function onLogout() {
+			ChatResource.logout(function() {
+				theUser.username = "";
+				theUser.isLoggedIn = false;
+				$location.path("/login");
+				$location.replace();
+			});
+		};
 	}
 ]);
 
