@@ -1,12 +1,14 @@
 <!-- greeting and change username -->
 <div class="row">
-	<h3>Hello {{user}}</h3>
-	<span>
-		<input type="text" ng-model="changedUsername"  placeholder="New Username!"/>
-	</span>
-	<span>
-		<button ng-click="onChangeUsername()">Change Username!</button>
-	</span>
+
+		<h3>Hello {{user}}</h3>
+		<div class="col-xs-12">
+			<input type="text" ng-model="changedUsername"  placeholder="New Username!"/>
+			<button ng-click="onChangeUsername()">Change Username!</button>
+		</div>
+		<div class="col-xs-12">
+			<button ng-click="onLogout()">Logout</button>
+		</div>
 </div>
 
 <!-- list of available rooms -->

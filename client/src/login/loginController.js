@@ -4,7 +4,6 @@ angular.module("ChatApp").controller("LoginController", ["$scope", "$location", 
 	function LoginController($scope, $location, ChatResource, theUser) {
 
 		$scope.user = "";
-		//$scope.pass = "";
 		$scope.errorMessage = "";
 		
 		$scope.onLogin = function onLogin() {
