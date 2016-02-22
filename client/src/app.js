@@ -11,5 +11,8 @@ angular.module("ChatApp", ['ngRoute', 'ng']).config(["$routeProvider", function(
 	}).when("/rooms/:id", {
 		templateUrl: "src/roomlist/room.html",
 		controller: "RoomController"
-	}).otherwise({ redirectTo: "/index" });
-}]);
+	}).otherwise({ redirectTo: "/login" });
+}]).value("theUser", {
+	username: "",
+	loggedIn: false
+});

@@ -1,11 +1,11 @@
 "use strict";
 
-angular.module("ChatApp").controller("RoomlistController", ["$scope", "$location", "ChatResource", 
-	function RoomlistController($scope, $location, ChatResource) {
+angular.module("ChatApp").controller("RoomlistController", ["$scope", "$location", "ChatResource", "theUser",
+	function RoomlistController($scope, $location, ChatResource, theUser) {
 
-		$scope.user = "logged in user";
+		$scope.user = theUser.username;
 
-		$scope.changeUsername = function changeUseername() {
+		$scope.changeUsername = function changeUsername() {
 			$scope.user = $scope.changedUsername;
 			$scope.changedUsername = null;
 		};

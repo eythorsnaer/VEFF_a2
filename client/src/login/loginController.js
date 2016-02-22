@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module("ChatApp").controller("LoginController", ["$scope", "$location", "ChatResource",
-	function LoginController($scope, $location, ChatResource) {
+angular.module("ChatApp").controller("LoginController", ["$scope", "$location", "ChatResource", "theUser",
+	function LoginController($scope, $location, ChatResource, theUser) {
 
 		$scope.user = "";
 		//$scope.pass = "";
@@ -16,6 +16,7 @@ angular.module("ChatApp").controller("LoginController", ["$scope", "$location", 
 				} 
 				else {
 					$scope.$apply(function() {
+						theUser.username = $scope.user;
 						$location.path("/rooms");
 						$location.replace();
 					});
