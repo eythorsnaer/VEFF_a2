@@ -21,25 +21,7 @@ function ChatResource() {
 		getRoomlist: function getRoomList() {
 			socket.emit("rooms");
 		},
-/*
-		createRoom: function createRoom(callback) {
-			//room should be undefined here
-			var roomInfo = {room: undefined};
-			
-			socket.emit("joinroom", roomInfo, function(success, reason){
-				if (success)
-				{
-					callback(true, reason);
-				}
-				else
-				{
-					callback(false, reason);
-				}
-			});
-			
-			
-		},
-*/
+
 		joinRoom: function joinRoom(roomID, callback) {
 			var roomInfo ={room: roomID};
 
