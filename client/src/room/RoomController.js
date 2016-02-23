@@ -6,6 +6,7 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 			$location.replace();
 		}
 
+		var userSendingServermessage;
 		var socket = io.connect('http://localhost:8080');
 		$scope.newMessage = "";
 		$scope.messageList = [];
@@ -13,6 +14,7 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 		$scope.userList = [];
 		$scope.opList = [];
 		$scope.errorMessage = "";
+		$scope.userIsNotAdmin = true;
 		
 		ChatResource.getUserList();
 
@@ -25,6 +27,8 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 				});
 				//console.log(reason);
 			}
+
+			userSendingServermessage = theUser.username;
 		});
 
 		$scope.onLeave = function onLeave() {
@@ -41,7 +45,44 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 			$scope.newMessage = null;
 		};
 
-		//fetch new messageList when updatechat is called in sendmsg in chatserver.js
+		//kick user
+		$scope.onKick = function onKick(user) {
+			ChatResource.kickUser(user, $routeParams.id, function(success) {
+				if(!success) {
+					$scope.errorMessage = "ERROR: failed to kick: " + user;
+				}
+			});
+		};
+
+		//ban user
+		$scope.onBan = function onBan(user) {
+			ChatResource.banUser(user, $routeParams.id, function(success) {
+				if(!success) {
+					$scope.errorMessage = "ERROR: failed to ban: " + user;
+				}
+			});
+		};
+
+		//op user
+		$scope.onOp = function onOp(user) {
+			ChatResource.opUser(user, $routeParams.id, function(success) {
+				if(!success) {
+					$scope.errorMessage = "ERROR: failed to op: " + user;
+				}
+			});
+		};
+
+		socket.on("servermessage", function(info) {
+			if (theUser.username == userSendingServermessage)
+			{
+				ChatResource.sendMessage(info, $routeParams.id);
+				userSendingServermessage =  undefined;
+			}
+
+			console.log(info);
+		});
+
+			//fetch new messageList when updatechat is called in sendmsg in chatserver.js
 		socket.on("updatechat", function(room, messageListFromdb) {
 			if (room === $routeParams.id) {
 				$scope.$apply(function() {
@@ -59,8 +100,41 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 				$scope.$apply(function() {
 					$scope.userList = userListFromdb;
 					$scope.opList = opListFromdb;
+
+					angular.forEach($scope.opList, function(op)
+					{
+						if (op == theUser.username)
+						{
+							$scope.userIsNotAdmin = false;
+						}
+					});
 				});
 			}
 		});
+<<<<<<< HEAD
+=======
+
+		socket.on("kicked", function() {
+			angular.forEach($scope.userList, function(user)
+			{
+				if (user === theUser.username)
+				{
+					$location.path("/rooms");
+					$location.replace();
+				}
+			});
+		});
+
+		socket.on("banned", function() {
+			angular.forEach($scope.userList, function(user)
+			{
+				if (user === theUser.username)
+				{
+					$location.path("/rooms");
+					$location.replace();
+				}
+			});
+		});
+>>>>>>> 0535e852806a229f6af2522dc13cc947097a14ba
 	}
 ]);
