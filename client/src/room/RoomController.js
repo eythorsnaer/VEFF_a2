@@ -83,6 +83,15 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 			});
 		};
 
+		//op user
+		$scope.onOp = function onOp(user) {
+			ChatResource.opUser(user, $routeParams.id, function(success) {
+				if(!success) {
+					$scope.errorMessage = "ERROR: failed to op: " + user;
+				}
+			});
+		};
+
 		//fetch new messageList when updatechat is called in sendmsg in chatserver.js
 		socket.on("updatechat", function(room, messageListFromdb) {
 			if (room === $routeParams.id) {

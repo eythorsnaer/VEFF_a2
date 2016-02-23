@@ -98,6 +98,21 @@ function ChatResource() {
 			});
 		},
 
+		opUser: function opUser(nick, roomID, callback) {
+			var userInfo = {user: nick, room: roomID};
+
+			socket.emit("op", userInfo, function(success){
+				if (success)
+				{
+					callback(true);
+				}
+				else
+				{
+					callback(false);
+				}
+			});
+		},
+
 		logout: function logout(callback) {
 			socket.emit("disconnect");
 			callback();
