@@ -12,6 +12,7 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 		$scope.userList = [];
 		$scope.opList = [];
 		$scope.errorMessage = "";
+		$scope.userIsNotAdmin = true;
 		
 
 		ChatResource.joinRoom($routeParams.id, function(success, reason) {
@@ -64,6 +65,24 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 			$scope.newMessage = "/whisper " + user + " ";
 		};
 
+		//kick user
+		$scope.onKick = function onKick(user) {
+			ChatResource.kickUser(user, $routeParams.id, function(success) {
+				if(!success) {
+					$scope.errorMessage = "ERROR: failed to kick: " + user;
+				}
+			});
+		};
+
+		//ban user
+		$scope.onBan = function onBan(user) {
+			ChatResource.banUser(user, $routeParams.id, function(success) {
+				if(!success) {
+					$scope.errorMessage = "ERROR: failed to ban: " + user;
+				}
+			});
+		};
+
 		//fetch new messageList when updatechat is called in sendmsg in chatserver.js
 		socket.on("updatechat", function(room, messageListFromdb) {
 			if (room === $routeParams.id) {
@@ -78,11 +97,38 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 				$scope.$apply(function() {
 					$scope.userList = userListFromdb;
 					$scope.opList = opListFromdb;
+
+					angular.forEach($scope.opList, function(op)
+					{
+						if (op == theUser.username)
+						{
+							$scope.userIsNotAdmin = false;
+						}
+					});
 				});
 			}
 		});
 
+		socket.on("kicked", function() {
+			angular.forEach($scope.userList, function(user)
+			{
+				if (user === theUser.username)
+				{
+					$location.path("/rooms");
+					$location.replace();
+				}
+			});
+		});
 
-
+		socket.on("banned", function() {
+			angular.forEach($scope.userList, function(user)
+			{
+				if (user === theUser.username)
+				{
+					$location.path("/rooms");
+					$location.replace();
+				}
+			});
+		});
 	}
 ]);

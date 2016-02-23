@@ -31,7 +31,13 @@
 		<span>
 			<button ng-click="onPrivateMessage(user)">Message!</button>
 		</span>
-	</div>	
+		<span>
+			<button ng-hide="userIsNotAdmin" ng-click="onKick(user)">Kick!</button>
+		</span>
+		<span>
+			<button ng-hide="userIsNotAdmin" ng-click="onBan(user)">Ban!</button>
+		</span>
+	</div>
 </ul>
 
 
