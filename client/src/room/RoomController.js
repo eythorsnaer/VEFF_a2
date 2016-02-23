@@ -6,6 +6,7 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 			$location.replace();
 		}
 
+		var userSendingServermessage;
 		var socket = io.connect('http://localhost:8080');
 		$scope.newMessage = "";
 		$scope.messageList = [];
@@ -24,6 +25,8 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 				});
 				//console.log(reason);
 			}
+
+			userSendingServermessage = theUser.username;
 		});
 
 		$scope.onLeave = function onLeave() {
@@ -92,7 +95,17 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 			});
 		};
 
-		//fetch new messageList when updatechat is called in sendmsg in chatserver.js
+		socket.on("servermessage", function(info) {
+			if (theUser.username == userSendingServermessage)
+			{
+				ChatResource.sendMessage(info, $routeParams.id);
+				userSendingServermessage =  undefined;
+			}
+
+			console.log(info);
+		});
+
+			//fetch new messageList when updatechat is called in sendmsg in chatserver.js
 		socket.on("updatechat", function(room, messageListFromdb) {
 			if (room === $routeParams.id) {
 				$scope.$apply(function() {
