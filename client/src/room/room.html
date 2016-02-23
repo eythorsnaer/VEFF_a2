@@ -17,22 +17,13 @@
 </div>	
 
 <h2>Users:</h2>
-<<<<<<< HEAD
-<
-<div ng-repeat="user in userList">
-	<span>{{user}}</span>
-	<span>
-		<a ng-href="#/pmroom/{{user}}">private message</a>
-	</span>
-</div>	
-=======
 <ul>
 	<div ng-repeat="user in userList">
 		<span>
 			<li>{{user}}</li>
 			</span>
 		<span>
-			<button ng-click="onPrivateMessage(user)">Message!</button>
+			<a ng-href="#/pmroom/{{user}}">private message</a>
 		</span>
 		<span>
 			<button ng-hide="userIsNotAdmin" ng-click="onKick(user)">Kick!</button>
@@ -45,7 +36,6 @@
 		</span>
 	</div>
 </ul>
->>>>>>> 0535e852806a229f6af2522dc13cc947097a14ba
 
 
 <h2>Messages:</h2>

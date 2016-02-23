@@ -28,7 +28,7 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 				//console.log(reason);
 			}
 
-			userSendingServermessage = theUser.username;
+			userSendingServermessage = userData.username;
 		});
 
 		$scope.onLeave = function onLeave() {
@@ -73,7 +73,7 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 		};
 
 		socket.on("servermessage", function(info) {
-			if (theUser.username == userSendingServermessage)
+			if (userData.username == userSendingServermessage)
 			{
 				ChatResource.sendMessage(info, $routeParams.id);
 				userSendingServermessage =  undefined;
@@ -91,10 +91,6 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 			}
 		});
 
-
-
-		
-
 		socket.on("updateusers", function(room, userListFromdb, opListFromdb) {
 			if (room === $routeParams.id) {
 				$scope.$apply(function() {
@@ -103,7 +99,7 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 
 					angular.forEach($scope.opList, function(op)
 					{
-						if (op == theUser.username)
+						if (op == userData.username)
 						{
 							$scope.userIsNotAdmin = false;
 						}
@@ -111,13 +107,11 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 				});
 			}
 		});
-<<<<<<< HEAD
-=======
 
 		socket.on("kicked", function() {
 			angular.forEach($scope.userList, function(user)
 			{
-				if (user === theUser.username)
+				if (user === userData.username)
 				{
 					$location.path("/rooms");
 					$location.replace();
@@ -128,13 +122,12 @@ angular.module("ChatApp").controller("RoomController", ["$scope", "$routeParams"
 		socket.on("banned", function() {
 			angular.forEach($scope.userList, function(user)
 			{
-				if (user === theUser.username)
+				if (user === userData.username)
 				{
 					$location.path("/rooms");
 					$location.replace();
 				}
 			});
 		});
->>>>>>> 0535e852806a229f6af2522dc13cc947097a14ba
 	}
 ]);
