@@ -37,7 +37,7 @@ gulp.task('jshint', function() {
 				},
 			    }))
 	    .pipe(jshint.reporter('default'))
-	    .pipe(uglify())
+	    //.pipe(uglify())
 	    .pipe(concat('all.js'))
 	    .pipe(gulp.dest('build'));
     });

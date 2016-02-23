@@ -11,8 +11,12 @@ angular.module("ChatApp", ['ngRoute', 'ng']).config(["$routeProvider", function(
 	}).when("/room/:id", {
 		templateUrl: "src/room/room.html",
 		controller: "RoomController"
+	}).when("/pmroom/:id", {
+		templateUrl: "src/pmroom/privateroom.html",
+		controller: "PrivateRoomController"
 	}).otherwise({ redirectTo: "/login" });
-}]).value("theUser", {
+}]).value("userData", {
 	username: "",
+	privateMessages: [],
 	isLoggedIn: false
 });

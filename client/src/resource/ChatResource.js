@@ -50,8 +50,9 @@ function ChatResource() {
 
 		sendPrivateMessage: function sendPrivateMessage(message, user, callback) {
 			var messageInfo = {nick: user, msg: message};
-
-			socket.emit("sendmsg", messageInfo, function(success){
+			console.log("inside chatRes");
+			console.log(messageInfo);
+			socket.emit("privatemsg", messageInfo, function(success){
 				if (success)
 				{
 					callback(true);
@@ -63,9 +64,8 @@ function ChatResource() {
 			});
 		},
 
-		getUserList: function getUserList(callback) {
+		getUserList: function getUserList() {
 			socket.emit("users");
-			callback();
 		},
 
 		kickUser: function kickUser(nick, roomID, callback) {

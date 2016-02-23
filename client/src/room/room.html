@@ -1,50 +1,46 @@
 <div>
-		<a ng-click="onLeave()" ng-href="#/rooms" >
-			<h1>leave!</h1>
-		</a>
+	{{errorMessage}}
 </div>
 
-
-<form>
-	<textarea ng-model="newMessage" id="newMessage" autofocus>Type a message here...</textarea>
-	<button type="submit" ng-click="onSendMessage()">Send!</button>
-</form>
+<div>
+	<a ng-click="onLeave()" ng-href="#/rooms" >
+		<h1>leave!</h1>
+	</a>
+</div>
 
 <h2>Admins:</h2>
-<ul >
-	<div ng-repeat="op in opList">
-		<span>
-			<li>{{op}}</li>
-		</span>
-		<span>
-			<button ng-click="onPrivateMessage(op)">Message!</button>
-		</span>
-	</div>
-</ul>
+<div ng-repeat="op in opList">
+	<span>{{op}}</span>
+	<span>
+		<a ng-href="#/pmroom/{{op}}">private message</a>
+	</span>
+</div>	
 
 <h2>Users:</h2>
-<ul>
-	<div ng-repeat="user in userList">
-		<span>
-			<li>{{user}}</li>
-			</span>
-		<span>
-			<button ng-click="onPrivateMessage(user)">Message!</button>
-		</span>
-	</div>	
-</ul>
+<
+<div ng-repeat="user in userList">
+	<span>{{user}}</span>
+	<span>
+		<a ng-href="#/pmroom/{{user}}">private message</a>
+	</span>
+</div>	
 
 
 <h2>Messages:</h2>
 
 <div>
 	<div ng-repeat="message in messageList">							
-			<h3>{{message.nick}}</h3>
-			<h5>{{message.timestamp | date:"dd/MM/yyyy HH:mm"}}</h5>
+			<p><b>{{message.nick}}</b><em>{{message.timestamp | date:" dd/MM/yyyy HH:mm"}}</em></p>
 			<p>{{message.message}}<p>
+			<p>_____________________________________________________________</p>
 	</div>
 </div>
 
-<div>
-	{{errorMessage}}
-</div>
+<form>
+	<textarea ng-model="newMessage" id="newMessage" autofocus  placeholder="Type a message here..."></textarea>
+	<br>
+	<button type="submit" ng-click="onSendMessage()">Send</button>
+</form>
+
+
+

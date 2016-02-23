@@ -1,7 +1,13 @@
 "use strict";
 
-angular.module("ChatApp").controller("LoginController", ["$scope", "$location", "ChatResource", "theUser",
-	function LoginController($scope, $location, ChatResource, theUser) {
+angular.module("ChatApp").controller("LoginController", ["$scope", "$location", "ChatResource", "userData",
+	function LoginController($scope, $location, ChatResource, userData) {
+
+		console.log(userData);
+		if(userData.isLoggedIn) {
+			$location.path("/rooms");
+			$location.replace();
+		}
 
 		$scope.user = "";
 		$scope.errorMessage = "";
@@ -15,8 +21,8 @@ angular.module("ChatApp").controller("LoginController", ["$scope", "$location", 
 				} 
 				else {
 					$scope.$apply(function() {
-						theUser.username = $scope.user;
-						theUser.isLoggedIn = true;
+						userData.username = $scope.user;
+						userData.isLoggedIn = true;
 						$location.path("/rooms");
 						$location.replace();
 					});

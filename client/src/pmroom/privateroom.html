@@ -1,0 +1,22 @@
+<div>
+    <a ng-click="onLeave()" ng-href="#/rooms" >
+      <h1>leave!</h1>
+    </a>
+</div>
+
+<h2>PrivateMessages:</h2>
+
+<div>
+	<div ng-repeat="message in PMList">							
+			<h3>{{message.nick}}</h3>
+			<h5>{{message.timestamp | date:"dd/MM/yyyy HH:mm"}}</h5>
+			<p>{{message.message}}<p>
+	</div>
+</div>
+
+<form>
+  Your message:<br>
+  <textarea ng-model="newPM" placeholder="Type a message here..."></textarea>
+  <br>
+  <button ng-click="onSendPM()">send</button>
+</form>
