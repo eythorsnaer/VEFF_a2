@@ -16,7 +16,7 @@ angular.module("ChatApp").controller("LoginController", ["$scope", "$location", 
 			ChatResource.login($scope.user, function(success) {
 				if(!success) {
 					$scope.$apply(function() {
-						$scope.errorMessage = "ERROR: failed to login!!!!! :p";
+						$scope.errorMessage = "ERROR: username already taken!";
 					});
 				} 
 				else {
