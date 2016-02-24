@@ -19,7 +19,6 @@ angular.module("ChatApp").controller("PrivateRoomController", ["$scope", "$route
 		$scope.onSendPM = function onSendPM() {
 			ChatResource.sendPrivateMessage($scope.newPM, $scope.thisUser, function(success) {
 				if(!success) {
-					console.log("failed to pm ");
 					$scope.errorMessage = "ERROR: failed to pm: " + $scope.userToPM;
 				}
 				else {
@@ -39,15 +38,10 @@ angular.module("ChatApp").controller("PrivateRoomController", ["$scope", "$route
 				nick: user, 
 				msg: message,
 			});
-			console.log("in recv_pri");
-			console.log(message);
+
 			$scope.$apply(function() {
 				$scope.PMList = userData.privateMessages;
 			});
-			console.log("aftar but still in recv_pri");
-			console.log(userData.privateMessages);
-
 		});
-
 	}
 ]);

@@ -7,7 +7,7 @@
 <h2>PrivateMessages:</h2>
 
 <div>
-	<div ng-repeat="message in PMList">							
+	<div ng-repeat="message in PMList track by $index">							
 			<h3>{{message.nick}}</h3>
 			<h5>{{message.timestamp | date:"dd/MM/yyyy HH:mm"}}</h5>
 			<p>{{message.msg}}<p>
