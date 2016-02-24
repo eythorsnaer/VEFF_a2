@@ -45,14 +45,10 @@ angular.module("ChatApp").controller("PrivateRoomController", ["$scope", "$route
 					$scope.errorMessage = "ERROR: failed to pm: " + $scope.userToPM;
 				}
 				else {
-					console.log("in else clause");
 					$scope.newPM = "";
 					$scope.userToPM = "";
 				}
 			});	
-
-			console.log("in onSendPM");
-			console.log($scope.PMList);
 		};
 
 		socket.on("recv_privatemsg", function(user, message) {
@@ -63,10 +59,10 @@ angular.module("ChatApp").controller("PrivateRoomController", ["$scope", "$route
 			userData.privateMessages.push({
 				timestamp: Date.now(), 
 				nick: user, 
-				message: message,
+				msg: message,
 			});
 			console.log("in recv_pri");
-			console.log(userData.privateMessages);
+			console.log(message);
 			$scope.$apply(function() {
 				$scope.PMList = userData.privateMessages;
 			});

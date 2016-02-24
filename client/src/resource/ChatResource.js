@@ -48,8 +48,8 @@ function ChatResource() {
 			socket.emit("sendmsg", messageInfo);
 		},
 
-		sendPrivateMessage: function sendPrivateMessage(message, user, callback) {
-			var messageInfo = {nick: user, msg: message};
+		sendPrivateMessage: function sendPrivateMessage(msg, user, callback) {
+			var messageInfo = {nick: user, message: msg};
 			console.log("inside chatRes");
 			console.log(messageInfo);
 			socket.emit("privatemsg", messageInfo, function(success){
