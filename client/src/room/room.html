@@ -9,19 +9,23 @@
 </div>
 
 <h2>Admins:</h2>
-<div ng-repeat="op in opList">
-	<span>{{op}}</span>
-	<span>
-		<a ng-href="#/pmroom/{{op}}">private message</a>
-	</span>
-</div>	
+<ul>
+	<div ng-repeat="op in opList">
+		<span>
+			<li>{{op}}</li>
+		</span>
+		<span>
+			<a ng-href="#/pmroom/{{op}}">private message</a>
+		</span>
+	</div>	
+</ul>
 
 <h2>Users:</h2>
 <ul>
 	<div ng-repeat="user in userList">
 		<span>
 			<li>{{user}}</li>
-			</span>
+		</span>
 		<span>
 			<a ng-href="#/pmroom/{{user}}">private message</a>
 		</span>
