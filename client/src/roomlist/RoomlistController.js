@@ -20,14 +20,6 @@ angular.module("ChatApp").controller("RoomlistController", ["$scope", "$location
 				$scope.roomlist = roomlistFromServer;
 			});
 		});
-/*
-
-		$scope.onChangeUsername = function changeUsername() {
-			$scope.user = $scope.changedUsername;
-			$scope.changedUsername = null;
-
-		};
-*/
 
 		$scope.onCreateRoom = function onCreateRoom() {
 			$location.path("/room/" + $scope.createRoomTextbox);

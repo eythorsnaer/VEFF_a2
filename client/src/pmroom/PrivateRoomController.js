@@ -16,28 +16,6 @@ angular.module("ChatApp").controller("PrivateRoomController", ["$scope", "$route
 		$scope.newPM = "";
 		$scope.PMList = {};
 
-/*
-		$scope.onSendPM = function onSendPM() {
-			socket.emit("privatemsg", {nick: $scope.otherUser, message: $scope.newMessage}, function(success){
-				if(!success) {
-					console.log("failed to pm ");
-					$scope.errorMessage = "ERROR: failed to pm: " + $scope.userToPM;
-				}
-				else {
-					$scope.$parent.PMList.push({
-						timestamp: Date.now(),
-						nick: $scope.thisUser,
-						message: $scope.newPM
-					});
-					console.log("inside onSendPM success");
-					$scope.newPM = "";
-					$scope.errorMessage = "";
-				}
-			});	
-		};
-*/
-
-
 		$scope.onSendPM = function onSendPM() {
 			ChatResource.sendPrivateMessage($scope.newPM, $scope.thisUser, function(success) {
 				if(!success) {
